@@ -1,0 +1,17 @@
+class Solution {//滑动窗口双指针解题
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int head=0;
+        int minres=nums.size(),res=0,sum=0;
+        for(int tail=0;tail<nums.size();tail++){
+            sum+=nums[tail];//加完以后再判断
+            res++;
+            while(sum>=target){
+                minres=min(res,minres);
+                sum-=nums[head++];
+                res--;
+            }
+        }
+        return (head==0&&sum<target)?0:minres;
+    }
+};
