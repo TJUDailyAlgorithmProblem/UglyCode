@@ -1,0 +1,20 @@
+//O(n)时间复杂度
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int head=0,tail=nums.size()-1,count=nums.size()-1;
+        vector<int> res=nums;
+        while(head!=tail){
+            if(nums[head]*nums[head]<=nums[tail]*nums[tail]){
+                res[count--]=nums[tail]*nums[tail];
+                --tail;
+            }
+            else{
+                res[count--]=nums[head]*nums[head];
+                ++head;
+            }
+        }
+        res[count]=nums[head]*nums[head];
+        return res;
+    }
+};
